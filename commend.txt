@@ -1,0 +1,6 @@
+<commit안될때>
+
+git reset --hard origin/master
+
+<push 안될때>
+git push -u origin master
