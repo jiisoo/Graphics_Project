@@ -282,8 +282,10 @@ void display()
     loc_u_material_specular, loc_u_material_shininess);
 
 //Grass_02
+  float x = -3.0f;
+  for(int i=0; i<3; i++){
     S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
-    T = kmuvcl::math::translate(3.0f, 0.0f, -15.0f);
+    T = kmuvcl::math::translate(x, 0.0f, -15.0f);
     mat_Model = T * S;
     mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -309,27 +311,8 @@ void display()
     g_grass.draw(loc_a_vertex, loc_a_normal,
       loc_u_material_ambient, loc_u_material_diffuse,
       loc_u_material_specular, loc_u_material_shininess);
-//trike grass
-    T = kmuvcl::math::translate(-3.0f, 0.0f, -15.0f);
-    mat_Model = T * S;
-    mat_PVM = mat_Proj*mat_View*mat_Model;
-
-    mat_Normal(0, 0) = mat_Model(0, 0);
-    mat_Normal(0, 1) = mat_Model(0, 1);
-    mat_Normal(0, 2) = mat_Model(0, 2);
-    mat_Normal(1, 0) = mat_Model(1, 0);
-    mat_Normal(1, 1) = mat_Model(1, 1);
-    mat_Normal(1, 2) = mat_Model(1, 2);
-    mat_Normal(2, 0) = mat_Model(2, 0);
-    mat_Normal(2, 1) = mat_Model(2, 1);
-    mat_Normal(2, 2) = mat_Model(2, 2);
-    glUniformMatrix4fv(loc_u_pvm_matrix, 1, false, mat_PVM);
-    glUniformMatrix4fv(loc_u_model_matrix, 1, false, mat_Model);
-    glUniformMatrix4fv(loc_u_view_matrix, 1, false, mat_View);
-    glUniformMatrix3fv(loc_u_normal_matrix, 1, false, mat_Normal);
-    g_grass.draw(loc_a_vertex, loc_a_normal,
-      loc_u_material_ambient, loc_u_material_diffuse,
-      loc_u_material_specular, loc_u_material_shininess);
+    x+= 3.0f;
+    }
 
 
 /*
