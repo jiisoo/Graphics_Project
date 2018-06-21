@@ -10,29 +10,53 @@ const kmuvcl::math::vec3f Camera::center_position() const
   return center_position;
 }
 
+
 // TODO: fill up the following functions properly
 void Camera::move_forward(float delta)
 {
   for(int i=0; i<3; i++)
       position_(i)+=front_dir_(i)*delta;
+ // (3.0f, 0.0f, -15.0f); //allo
+  if( (2.0f <= position_(0) && position_(0)<=4.0f) && ( -20.0f<=position_(2) && position_(2)<= -10.0f )) //allo
+  {
+    for(int i=0; i<3; i++)
+      position_(i)-=front_dir_(i)*delta;
+  }
 }
 
 void Camera::move_backward(float delta)
 {
   for(int i=0; i<3; i++)
       position_(i)-=front_dir_(i)*delta;
+  if( (2.0f <= position_(0) && position_(0)<=4.0f) && ( -20.0f<=position_(2) && position_(2)<= -10.0f )) //allo
+  {
+    for(int i=0; i<3; i++)
+      position_(i)+=front_dir_(i)*delta;
+  }
 }
 
 void Camera::move_left(float delta)
 {
   for(int i=0; i<3; i++)
     position_(i)-=right_dir_(i)*delta;
+
+  if( (2.0f <= position_(0) && position_(0)<=4.0f) && ( -20.0f<=position_(2) && position_(2)<= -10.0f )) //allo
+  {
+    for(int i=0; i<3; i++)
+      position_(i)+=right_dir_(i)*delta;
+  }
 }
 
 void Camera::move_right(float delta)
 {
   for(int i=0; i<3; i++)
     position_(i)+=right_dir_(i)*delta;
+  
+  if( (2.0f <= position_(0) && position_(0)<=4.0f) && ( -20.0f<=position_(2) && position_(2)<= -10.0f )) //allo
+  {
+    for(int i=0; i<3; i++)
+      position_(i)-=right_dir_(i)*delta;
+  }
 }
 
 void Camera::rotate_up(float delta)
