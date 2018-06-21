@@ -21,11 +21,12 @@ void idle();
 void keyboard(unsigned char, int, int);
 void special(int, int, int);
 
+
 GLuint program;
 
-Object		g_trike, g_dilo, g_allo, g_bird;  // dinosour
+Object		g_trike, g_fan, g_dilo, g_allo, g_grass;  // dinosour
 
-Object    g_cctv, g_grass, g_gate, g_rock, g_wall;
+Object    g_cctv;
 
 Camera		g_camera;											// viewer (you)
 
@@ -109,11 +110,7 @@ void init()
   g_cctv.load_simple_obj("./object/Camera/Camera.obj");
   g_dilo.load_simple_obj("./object/Dilophosaurus/dilo.obj");
   g_allo.load_simple_obj("./object/Allosarus/allo.obj");
-  g_bird.load_simple_obj("./object/lowpoly_bird.obj");
   g_grass.load_simple_obj("./object/grass/Grass_02.obj");
-  g_gate.load_simple_obj("./object/gate.obj");
-  g_rock.load_simple_obj("./object/Rock.obj");
-//  g_wall.load_simple_obj("./object/Wall/grade.obj");
 
   glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -167,68 +164,7 @@ void display()
   mat_Proj = kmuvcl::math::perspective(g_camera.fovy(), 1.0f, 0.001f, 10000.0f);
 
 // TODO: draw furniture by properly transforming each object
-////////////////////Wall//////////////////////
 
-
-////////////////////Rock//////////////////////
-  S = kmuvcl::math::scale(2.0f, 2.0f, 2.0f);
-  T = kmuvcl::math::translate(-7.0f, 2.0f, -13.0f);
-  mat_Model = T * S ;
-  mat_PVM = mat_Proj*mat_View*mat_Model;
-
-  mat_Normal(0, 0) = mat_Model(0, 0);
-  mat_Normal(0, 1) = mat_Model(0, 1);
-  mat_Normal(0, 2) = mat_Model(0, 2);
-  mat_Normal(1, 0) = mat_Model(1, 0);
-  mat_Normal(1, 1) = mat_Model(1, 1);
-  mat_Normal(1, 2) = mat_Model(1, 2);
-  mat_Normal(2, 0) = mat_Model(2, 0);
-  mat_Normal(2, 1) = mat_Model(2, 1);
-  mat_Normal(2, 2) = mat_Model(2, 2);
-
-  glUniformMatrix4fv(loc_u_pvm_matrix, 1, false, mat_PVM);
-  glUniformMatrix4fv(loc_u_model_matrix, 1, false, mat_Model);
-  glUniformMatrix4fv(loc_u_view_matrix, 1, false, mat_View);
-  glUniformMatrix3fv(loc_u_normal_matrix, 1, false, mat_Normal);
-
-  glUniform3fv(loc_u_light_vector, 1, light_vector);
-  glUniform4fv(loc_u_light_ambient, 1, light_ambient);
-  glUniform4fv(loc_u_light_diffuse, 1, light_diffuse);
-  glUniform4fv(loc_u_light_specular, 1, light_specular);
-  g_rock.draw(loc_a_vertex, loc_a_normal,
-    loc_u_material_ambient, loc_u_material_diffuse,
-    loc_u_material_specular, loc_u_material_shininess);
-
-////////////////////Gate//////////////////////
-  S = kmuvcl::math::scale(13.0f, 13.0f, 13.0f);
-  T = kmuvcl::math::translate(-5.0f, 0.0f, 5.0f);
-  mat_Model = T * S ;
-  mat_PVM = mat_Proj*mat_View*mat_Model;
-
-  mat_Normal(0, 0) = mat_Model(0, 0);
-  mat_Normal(0, 1) = mat_Model(0, 1);
-  mat_Normal(0, 2) = mat_Model(0, 2);
-  mat_Normal(1, 0) = mat_Model(1, 0);
-  mat_Normal(1, 1) = mat_Model(1, 1);
-  mat_Normal(1, 2) = mat_Model(1, 2);
-  mat_Normal(2, 0) = mat_Model(2, 0);
-  mat_Normal(2, 1) = mat_Model(2, 1);
-  mat_Normal(2, 2) = mat_Model(2, 2);
-
-  glUniformMatrix4fv(loc_u_pvm_matrix, 1, false, mat_PVM);
-  glUniformMatrix4fv(loc_u_model_matrix, 1, false, mat_Model);
-  glUniformMatrix4fv(loc_u_view_matrix, 1, false, mat_View);
-  glUniformMatrix3fv(loc_u_normal_matrix, 1, false, mat_Normal);
-
-  glUniform3fv(loc_u_light_vector, 1, light_vector);
-  glUniform4fv(loc_u_light_ambient, 1, light_ambient);
-  glUniform4fv(loc_u_light_diffuse, 1, light_diffuse);
-  glUniform4fv(loc_u_light_specular, 1, light_specular);
-  g_gate.draw(loc_a_vertex, loc_a_normal,
-    loc_u_material_ambient, loc_u_material_diffuse,
-    loc_u_material_specular, loc_u_material_shininess);
-
-/////////////////////Triceratops//////////////////////
   S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
   R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
   T = kmuvcl::math::translate(-3.0f, 0.0f, -15.0f);
@@ -320,7 +256,7 @@ void display()
 
 ///////////////////////////allo//////////////////////////////
   S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
-  R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
+  R = kmuvcl::math::rotate(-90.0f, 180.0f, 0.0f, 0.0f);
   T = kmuvcl::math::translate(3.0f, 0.0f, -15.0f);
   mat_Model = T * S * R;
   mat_PVM = mat_Proj*mat_View*mat_Model;
@@ -345,36 +281,6 @@ void display()
   glUniform4fv(loc_u_light_diffuse, 1, light_diffuse);
   glUniform4fv(loc_u_light_specular, 1, light_specular);
   g_allo.draw(loc_a_vertex, loc_a_normal,
-    loc_u_material_ambient, loc_u_material_diffuse,
-    loc_u_material_specular, loc_u_material_shininess);
-
-///////////////////////////bird//////////////////////////////
-  S = kmuvcl::math::scale(0.2f, 0.2f, 0.2f);
-  R = kmuvcl::math::rotate(model_angle, 0.0f, 1.0f, 0.0f);
-  T = kmuvcl::math::translate(0.0f, 7.0f, -10.0f);
-  mat_Model = T * S * R;
-  mat_PVM = mat_Proj*mat_View*mat_Model;
-
-  mat_Normal(0, 0) = mat_Model(0, 0);
-  mat_Normal(0, 1) = mat_Model(0, 1);
-  mat_Normal(0, 2) = mat_Model(0, 2);
-  mat_Normal(1, 0) = mat_Model(1, 0);
-  mat_Normal(1, 1) = mat_Model(1, 1);
-  mat_Normal(1, 2) = mat_Model(1, 2);
-  mat_Normal(2, 0) = mat_Model(2, 0);
-  mat_Normal(2, 1) = mat_Model(2, 1);
-  mat_Normal(2, 2) = mat_Model(2, 2);
-
-  glUniformMatrix4fv(loc_u_pvm_matrix, 1, false, mat_PVM);
-  glUniformMatrix4fv(loc_u_model_matrix, 1, false, mat_Model);
-  glUniformMatrix4fv(loc_u_view_matrix, 1, false, mat_View);
-  glUniformMatrix3fv(loc_u_normal_matrix, 1, false, mat_Normal);
-
-  glUniform3fv(loc_u_light_vector, 1, light_vector);
-  glUniform4fv(loc_u_light_ambient, 1, light_ambient);
-  glUniform4fv(loc_u_light_diffuse, 1, light_diffuse);
-  glUniform4fv(loc_u_light_specular, 1, light_specular);
-  g_bird.draw(loc_a_vertex, loc_a_normal,
     loc_u_material_ambient, loc_u_material_diffuse,
     loc_u_material_specular, loc_u_material_shininess);
 
@@ -488,18 +394,13 @@ void special(int key, int x, int y)
 
 void idle()
 {
-  // curr = std::chrono::system_clock::now();
-  //
-  // std::chrono::duration<float> elaped_seconds = (curr - prev);
-  //
-  // model_angle += 20 * elaped_seconds.count();
-  //
-  // prev = curr;
-  //
-  // glutPostRedisplay();
-  model_angle += 1.0f;
+  curr = std::chrono::system_clock::now();
 
-  if(model_angle > 360)
-  model_angle = 0.0f;
+  std::chrono::duration<float> elaped_seconds = (curr - prev);
+
+  model_angle += 10 * elaped_seconds.count();
+
+  prev = curr;
+
   glutPostRedisplay();
 }
