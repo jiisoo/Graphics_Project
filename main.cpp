@@ -183,7 +183,7 @@ void display()
   S = kmuvcl::math::scale(2.0f, 2.0f, 2.0f);
   R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
   T = kmuvcl::math::translate(0.0f, 0.0f, 5.0f);
-  mat_Model = T * S *R;
+  mat_Model = T * S * R;
   mat_PVM = mat_Proj*mat_View*mat_Model;
 
   mat_Normal(0, 0) = mat_Model(0, 0);
