@@ -104,7 +104,7 @@ void init()
   //g_model.load_simple_obj(g_filename);
   //g_model.print();
   g_trike.load_simple_obj("./object/Triceratops/trike.obj");
-  g_cctv.load_simple_obj("./Camera/Camera.obj");
+  g_cctv.load_simple_obj("./Camera/cctv.obj");
   g_dilo.load_simple_obj("./object/Dilophosaurus/dilo.obj");
   g_allo.load_simple_obj("./object/Allosarus/allo.obj");
 
