@@ -17,14 +17,13 @@ void Camera::move_forward(float delta)
   for(int i=0; i<3; i++)
       position_(i)+=front_dir_(i)*delta;
  // (3.0f, 0.0f, -15.0f); //allo 0- > +- 1 , 2->+-5
-<<<<<<< HEAD
+
   if( ((2.0f <= position_(0) && position_(0)<= 4.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f ))//allo
     ||((-4.0f <= position_(0) && position_(0)<=-2.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f ))//tricera
     ||((8.3f <= position_(0) && position_(0)<=9.7f) && ( -24.0f<=position_(2) && position_(2)<= -16.0f ))//dilo
     )
-=======
+
   if( (2.0f <= position_(0) && position_(0)<=4.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f )) //allo
->>>>>>> 0dfa194cc3e9572caf72a0e44576e96ba0098a9f
   {
     for(int i=0; i<3; i++)
       position_(i)-=front_dir_(i)*delta;
@@ -41,14 +40,11 @@ void Camera::move_backward(float delta)
 {
   for(int i=0; i<3; i++)
       position_(i)-=front_dir_(i)*delta;
-<<<<<<< HEAD
   if( ((2.0f <= position_(0) && position_(0)<= 4.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f ))//allo
     ||((-4.0f <= position_(0) && position_(0)<=-2.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f ))//tricera
     ||((8.3f <= position_(0) && position_(0)<=9.7f) && ( -24.0f<=position_(2) && position_(2)<= -16.0f ))//dilo
     )
-=======
   if( (2.0f <= position_(0) && position_(0)<=4.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f )) //allo
->>>>>>> 0dfa194cc3e9572caf72a0e44576e96ba0098a9f
   {
     for(int i=0; i<3; i++)
       position_(i)+=front_dir_(i)*delta;
@@ -67,14 +63,11 @@ void Camera::move_left(float delta)
   for(int i=0; i<3; i++)
     position_(i)-=right_dir_(i)*delta;
 
-<<<<<<< HEAD
   if( ((2.0f <= position_(0) && position_(0)<= 4.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f ))//allo
     ||((-4.0f <= position_(0) && position_(0)<=-2.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f ))//tricera
     ||((8.3f <= position_(0) && position_(0)<=9.7f) && ( -24.0f<=position_(2) && position_(2)<= -16.0f ))//dilo
     )
-=======
   if( (2.0f <= position_(0) && position_(0)<=4.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f )) //allo
->>>>>>> 0dfa194cc3e9572caf72a0e44576e96ba0098a9f
   {
     for(int i=0; i<3; i++)
       position_(i)+=right_dir_(i)*delta;
@@ -92,15 +85,12 @@ void Camera::move_right(float delta)
 {
   for(int i=0; i<3; i++)
     position_(i)+=right_dir_(i)*delta;
-  
-<<<<<<< HEAD
+
   if( ((2.0f <= position_(0) && position_(0)<= 4.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f ))//allo
     ||((-4.0f <= position_(0) && position_(0)<=-2.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f ))//tricera
     ||((8.3f <= position_(0) && position_(0)<=9.7f) && ( -24.0f<=position_(2) && position_(2)<= -16.0f ))//dilo
     )
-=======
   if( (2.0f <= position_(0) && position_(0)<=4.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f )) //allo
->>>>>>> 0dfa194cc3e9572caf72a0e44576e96ba0098a9f
   {
     for(int i=0; i<3; i++)
       position_(i)-=right_dir_(i)*delta;
