@@ -23,7 +23,10 @@ void special(int, int, int);
 
 GLuint program;
 
-Object		g_trike, g_fan, g_dilo, g_allo, g_grass;  // furniture
+Object		g_trike, g_fan, g_dilo, g_allo, g_grass;  // dinosour
+
+Object    g_cctv;
+
 Camera		g_camera;											// viewer (you)
 
 GLint  loc_a_vertex;
@@ -103,7 +106,7 @@ void init()
   //g_model.load_simple_obj(g_filename);
   //g_model.print();
   g_trike.load_simple_obj("./object/Triceratops/trike.obj");
-  g_fan.load_simple_obj("./data/fan.obj");
+  g_cctv.load_simple_obj("./Camera/cctv.obj");
   g_dilo.load_simple_obj("./object/Dilophosaurus/dilo.obj");
   g_allo.load_simple_obj("./object/Allosarus/allo.obj");
   g_grass.load_simple_obj("./object/grass/Grass_02.obj");
@@ -191,12 +194,30 @@ void display()
     loc_u_material_specular, loc_u_material_shininess);
 
   S = kmuvcl::math::scale(1.5f, 1.5f, 1.5f);
-  R = kmuvcl::math::rotate(10.0f, 0.0f, 1.0f, 0.0f); //rotate fan
   T = kmuvcl::math::translate(0.0f, 5.0f, 0.0f);
   mat_Model = T * S * R;
   mat_PVM = mat_Proj*mat_View*mat_Model;
+
+  mat_Normal(0, 0) = mat_Model(0, 0);
+  mat_Normal(0, 1) = mat_Model(0, 1);
+  mat_Normal(0, 2) = mat_Model(0, 2);
+  mat_Normal(1, 0) = mat_Model(1, 0);
+  mat_Normal(1, 1) = mat_Model(1, 1);
+  mat_Normal(1, 2) = mat_Model(1, 2);
+  mat_Normal(2, 0) = mat_Model(2, 0);
+  mat_Normal(2, 1) = mat_Model(2, 1);
+  mat_Normal(2, 2) = mat_Model(2, 2);
+
   glUniformMatrix4fv(loc_u_pvm_matrix, 1, false, mat_PVM);
-  g_fan.draw(loc_a_vertex, loc_a_normal,
+  glUniformMatrix4fv(loc_u_model_matrix, 1, false, mat_Model);
+  glUniformMatrix4fv(loc_u_view_matrix, 1, false, mat_View);
+  glUniformMatrix3fv(loc_u_normal_matrix, 1, false, mat_Normal);
+
+  glUniform3fv(loc_u_light_vector, 1, light_vector);
+  glUniform4fv(loc_u_light_ambient, 1, light_ambient);
+  glUniform4fv(loc_u_light_diffuse, 1, light_diffuse);
+  glUniform4fv(loc_u_light_specular, 1, light_specular);
+  g_cctv.draw(loc_a_vertex, loc_a_normal,
     loc_u_material_ambient, loc_u_material_diffuse,
     loc_u_material_specular, loc_u_material_shininess);
 
