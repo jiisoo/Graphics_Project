@@ -116,7 +116,7 @@ void init()
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);    // for filled polygon rendering
 
   glEnable(GL_DEPTH_TEST);
-
+  
   program = Shader::create_program("./shader/phong_vert.glsl", "./shader/phong_frag.glsl");
 
   loc_u_pvm_matrix         = glGetUniformLocation(program, "u_pvm_matrix");
