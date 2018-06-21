@@ -25,7 +25,7 @@ GLuint program;
 
 Object		g_trike, g_dilo, g_allo, g_grass, g_gate;  // dinosour
 
-Object    g_cctv;
+Object    g_cctv, g_rock, g_wall;
 
 Camera		g_camera;											// viewer (you)
 
@@ -111,6 +111,8 @@ void init()
   g_allo.load_simple_obj("./object/Allosarus/allo.obj");
   g_grass.load_simple_obj("./object/grass/Grass_02.obj");
   g_gate.load_simple_obj("./object/gate.obj");
+  g_rock.load_simple_obj("./object/Rock.obj");
+//  g_wall.load_simple_obj("./object/Wall/grade.obj");
 
   glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -164,6 +166,38 @@ void display()
   mat_Proj = kmuvcl::math::perspective(g_camera.fovy(), 1.0f, 0.001f, 10000.0f);
 
 // TODO: draw furniture by properly transforming each object
+////////////////////Wall//////////////////////
+
+
+////////////////////Rock//////////////////////
+  S = kmuvcl::math::scale(2.0f, 2.0f, 2.0f);
+  T = kmuvcl::math::translate(-7.0f, 2.0f, -13.0f);
+  mat_Model = T * S ;
+  mat_PVM = mat_Proj*mat_View*mat_Model;
+
+  mat_Normal(0, 0) = mat_Model(0, 0);
+  mat_Normal(0, 1) = mat_Model(0, 1);
+  mat_Normal(0, 2) = mat_Model(0, 2);
+  mat_Normal(1, 0) = mat_Model(1, 0);
+  mat_Normal(1, 1) = mat_Model(1, 1);
+  mat_Normal(1, 2) = mat_Model(1, 2);
+  mat_Normal(2, 0) = mat_Model(2, 0);
+  mat_Normal(2, 1) = mat_Model(2, 1);
+  mat_Normal(2, 2) = mat_Model(2, 2);
+
+  glUniformMatrix4fv(loc_u_pvm_matrix, 1, false, mat_PVM);
+  glUniformMatrix4fv(loc_u_model_matrix, 1, false, mat_Model);
+  glUniformMatrix4fv(loc_u_view_matrix, 1, false, mat_View);
+  glUniformMatrix3fv(loc_u_normal_matrix, 1, false, mat_Normal);
+
+  glUniform3fv(loc_u_light_vector, 1, light_vector);
+  glUniform4fv(loc_u_light_ambient, 1, light_ambient);
+  glUniform4fv(loc_u_light_diffuse, 1, light_diffuse);
+  glUniform4fv(loc_u_light_specular, 1, light_specular);
+  g_rock.draw(loc_a_vertex, loc_a_normal,
+    loc_u_material_ambient, loc_u_material_diffuse,
+    loc_u_material_specular, loc_u_material_shininess);
+
 ////////////////////Gate//////////////////////
   S = kmuvcl::math::scale(13.0f, 13.0f, 13.0f);
   T = kmuvcl::math::translate(-5.0f, 0.0f, 5.0f);
