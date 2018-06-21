@@ -284,8 +284,8 @@ void display()
     loc_u_material_specular, loc_u_material_shininess);
 
 //Grass_02
-  float x = -3.0f;
-  for(int i=0; i<3; i++){
+  float x = -20.0f;
+  for(int i=0; i<10; i++){
     S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
     T = kmuvcl::math::translate(x, 0.0f, -15.0f);
     mat_Model = T * S;
