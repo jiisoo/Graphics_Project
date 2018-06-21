@@ -285,7 +285,14 @@ void keyboard(unsigned char key, int x, int y)
   {
     g_camera.rotate_right(10.0f);
   }
-
+  else if(key=='s' || key=='S')
+  {
+    g_camera.rotate_down(10.0f);
+  }
+  else if(key=='w' || key=='W')
+  {
+    g_camera.rotate_up(10.0f);
+  }
 	glutPostRedisplay();
 }
 
