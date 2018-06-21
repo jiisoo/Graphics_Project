@@ -201,7 +201,7 @@ void display()
 
 ////////////////////Gate//////////////////////
   S = kmuvcl::math::scale(13.0f, 13.0f, 13.0f);
-  T = kmuvcl::math::translate(-5.0f, 0.0f, 5.0f);
+  T = kmuvcl::math::translate(0.0f, 0.0f, 5.0f);
   mat_Model = T * S ;
   mat_PVM = mat_Proj*mat_View*mat_Model;
 
