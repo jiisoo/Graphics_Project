@@ -106,7 +106,7 @@ void init()
   //g_model.load_simple_obj(g_filename);
   //g_model.print();
   g_trike.load_simple_obj("./object/Triceratops/trike.obj");
-  g_cctv.load_simple_obj("./Camera/cctv.obj");
+  g_cctv.load_simple_obj("./object/Camera/Camera.obj");
   g_dilo.load_simple_obj("./object/Dilophosaurus/dilo.obj");
   g_allo.load_simple_obj("./object/Allosarus/allo.obj");
   g_grass.load_simple_obj("./object/grass/Grass_02.obj");
@@ -193,9 +193,10 @@ void display()
     loc_u_material_ambient, loc_u_material_diffuse,
     loc_u_material_specular, loc_u_material_shininess);
 
+////////////////////////////cctv//////////////////////////////
   S = kmuvcl::math::scale(1.5f, 1.5f, 1.5f);
-  T = kmuvcl::math::translate(0.0f, 5.0f, 0.0f);
-  mat_Model = T * S * R;
+  T = kmuvcl::math::translate(0.0f, 10.0f, -13.0f);
+  mat_Model = T * S;
   mat_PVM = mat_Proj*mat_View*mat_Model;
 
   mat_Normal(0, 0) = mat_Model(0, 0);
@@ -221,6 +222,7 @@ void display()
     loc_u_material_ambient, loc_u_material_diffuse,
     loc_u_material_specular, loc_u_material_shininess);
 
+/////////////////////dilo///////////////////////////////
   S = kmuvcl::math::scale(2.0f, 2.0f, 2.0f);
   R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
   T = kmuvcl::math::translate(6.0f, 0.0f, -15.0f);
@@ -251,7 +253,7 @@ void display()
     loc_u_material_ambient, loc_u_material_diffuse,
     loc_u_material_specular, loc_u_material_shininess);
 
-
+///////////////////////////allo//////////////////////////////
   S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
   R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
   T = kmuvcl::math::translate(3.0f, 0.0f, -15.0f);
