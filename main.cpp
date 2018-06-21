@@ -172,7 +172,7 @@ void display()
 
 ////////////////////Rock//////////////////////
   S = kmuvcl::math::scale(2.0f, 2.0f, 2.0f);
-  T = kmuvcl::math::translate(-7.0f, 2.0f, -13.0f);
+  T = kmuvcl::math::translate(-7.0f, 2.0f, -20.0f);
   mat_Model = T * S ;
   mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -228,10 +228,73 @@ void display()
     loc_u_material_ambient, loc_u_material_diffuse,
     loc_u_material_specular, loc_u_material_shininess);
 
+
+/////////////////////dilo///////////////////////////////
+  S = kmuvcl::math::scale(2.0f, 2.0f, 2.0f);
+  R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
+  T = kmuvcl::math::translate(9.0f, 0.0f, -20.0f); //바꾸지말기
+  mat_Model = T * S *R;
+  mat_PVM = mat_Proj*mat_View*mat_Model;
+
+  mat_Normal(0, 0) = mat_Model(0, 0);
+  mat_Normal(0, 1) = mat_Model(0, 1);
+  mat_Normal(0, 2) = mat_Model(0, 2);
+  mat_Normal(1, 0) = mat_Model(1, 0);
+  mat_Normal(1, 1) = mat_Model(1, 1);
+  mat_Normal(1, 2) = mat_Model(1, 2);
+  mat_Normal(2, 0) = mat_Model(2, 0);
+  mat_Normal(2, 1) = mat_Model(2, 1);
+  mat_Normal(2, 2) = mat_Model(2, 2);
+
+  glUniformMatrix4fv(loc_u_pvm_matrix, 1, false, mat_PVM);
+  glUniformMatrix4fv(loc_u_model_matrix, 1, false, mat_Model);
+  glUniformMatrix4fv(loc_u_view_matrix, 1, false, mat_View);
+  glUniformMatrix3fv(loc_u_normal_matrix, 1, false, mat_Normal);
+
+  glUniform3fv(loc_u_light_vector, 1, light_vector);
+  glUniform4fv(loc_u_light_ambient, 1, light_ambient);
+  glUniform4fv(loc_u_light_diffuse, 1, light_diffuse);
+  glUniform4fv(loc_u_light_specular, 1, light_specular);
+
+  g_dilo.draw(loc_a_vertex, loc_a_normal,
+    loc_u_material_ambient, loc_u_material_diffuse,
+    loc_u_material_specular, loc_u_material_shininess);
+
+///////////////////////////allo//////////////////////////////
+  S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
+  R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
+  T = kmuvcl::math::translate(3.0f, 0.0f, -20.0f); //바꾸지 말기
+  mat_Model = T * S * R;
+  mat_PVM = mat_Proj*mat_View*mat_Model;
+
+  mat_Normal(0, 0) = mat_Model(0, 0);
+  mat_Normal(0, 1) = mat_Model(0, 1);
+  mat_Normal(0, 2) = mat_Model(0, 2);
+  mat_Normal(1, 0) = mat_Model(1, 0);
+  mat_Normal(1, 1) = mat_Model(1, 1);
+  mat_Normal(1, 2) = mat_Model(1, 2);
+  mat_Normal(2, 0) = mat_Model(2, 0);
+  mat_Normal(2, 1) = mat_Model(2, 1);
+  mat_Normal(2, 2) = mat_Model(2, 2);
+
+  glUniformMatrix4fv(loc_u_pvm_matrix, 1, false, mat_PVM);
+  glUniformMatrix4fv(loc_u_model_matrix, 1, false, mat_Model);
+  glUniformMatrix4fv(loc_u_view_matrix, 1, false, mat_View);
+  glUniformMatrix3fv(loc_u_normal_matrix, 1, false, mat_Normal);
+
+  glUniform3fv(loc_u_light_vector, 1, light_vector);
+  glUniform4fv(loc_u_light_ambient, 1, light_ambient);
+  glUniform4fv(loc_u_light_diffuse, 1, light_diffuse);
+  glUniform4fv(loc_u_light_specular, 1, light_specular);
+  g_allo.draw(loc_a_vertex, loc_a_normal,
+    loc_u_material_ambient, loc_u_material_diffuse,
+    loc_u_material_specular, loc_u_material_shininess);
+
+
 /////////////////////Triceratops//////////////////////
   S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
   R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
-  T = kmuvcl::math::translate(-3.0f, 0.0f, -15.0f);
+  T = kmuvcl::math::translate(-3.0f, 0.0f, -20.0f);//바꾸지말기
   mat_Model = T * S * R;
   mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -287,67 +350,6 @@ void display()
     loc_u_material_ambient, loc_u_material_diffuse,
     loc_u_material_specular, loc_u_material_shininess);
 
-/////////////////////dilo///////////////////////////////
-  S = kmuvcl::math::scale(2.0f, 2.0f, 2.0f);
-  R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
-  T = kmuvcl::math::translate(6.0f, 0.0f, -15.0f);
-  mat_Model = T * S *R;
-  mat_PVM = mat_Proj*mat_View*mat_Model;
-
-  mat_Normal(0, 0) = mat_Model(0, 0);
-  mat_Normal(0, 1) = mat_Model(0, 1);
-  mat_Normal(0, 2) = mat_Model(0, 2);
-  mat_Normal(1, 0) = mat_Model(1, 0);
-  mat_Normal(1, 1) = mat_Model(1, 1);
-  mat_Normal(1, 2) = mat_Model(1, 2);
-  mat_Normal(2, 0) = mat_Model(2, 0);
-  mat_Normal(2, 1) = mat_Model(2, 1);
-  mat_Normal(2, 2) = mat_Model(2, 2);
-
-  glUniformMatrix4fv(loc_u_pvm_matrix, 1, false, mat_PVM);
-  glUniformMatrix4fv(loc_u_model_matrix, 1, false, mat_Model);
-  glUniformMatrix4fv(loc_u_view_matrix, 1, false, mat_View);
-  glUniformMatrix3fv(loc_u_normal_matrix, 1, false, mat_Normal);
-
-  glUniform3fv(loc_u_light_vector, 1, light_vector);
-  glUniform4fv(loc_u_light_ambient, 1, light_ambient);
-  glUniform4fv(loc_u_light_diffuse, 1, light_diffuse);
-  glUniform4fv(loc_u_light_specular, 1, light_specular);
-
-  g_dilo.draw(loc_a_vertex, loc_a_normal,
-    loc_u_material_ambient, loc_u_material_diffuse,
-    loc_u_material_specular, loc_u_material_shininess);
-
-///////////////////////////allo//////////////////////////////
-  S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
-  R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
-  T = kmuvcl::math::translate(3.0f, 0.0f, -15.0f);
-  mat_Model = T * S * R;
-  mat_PVM = mat_Proj*mat_View*mat_Model;
-
-  mat_Normal(0, 0) = mat_Model(0, 0);
-  mat_Normal(0, 1) = mat_Model(0, 1);
-  mat_Normal(0, 2) = mat_Model(0, 2);
-  mat_Normal(1, 0) = mat_Model(1, 0);
-  mat_Normal(1, 1) = mat_Model(1, 1);
-  mat_Normal(1, 2) = mat_Model(1, 2);
-  mat_Normal(2, 0) = mat_Model(2, 0);
-  mat_Normal(2, 1) = mat_Model(2, 1);
-  mat_Normal(2, 2) = mat_Model(2, 2);
-
-  glUniformMatrix4fv(loc_u_pvm_matrix, 1, false, mat_PVM);
-  glUniformMatrix4fv(loc_u_model_matrix, 1, false, mat_Model);
-  glUniformMatrix4fv(loc_u_view_matrix, 1, false, mat_View);
-  glUniformMatrix3fv(loc_u_normal_matrix, 1, false, mat_Normal);
-
-  glUniform3fv(loc_u_light_vector, 1, light_vector);
-  glUniform4fv(loc_u_light_ambient, 1, light_ambient);
-  glUniform4fv(loc_u_light_diffuse, 1, light_diffuse);
-  glUniform4fv(loc_u_light_specular, 1, light_specular);
-  g_allo.draw(loc_a_vertex, loc_a_normal,
-    loc_u_material_ambient, loc_u_material_diffuse,
-    loc_u_material_specular, loc_u_material_shininess);
-
 ///////////////////////////bird//////////////////////////////
   S = kmuvcl::math::scale(0.2f, 0.2f, 0.2f);
   R = kmuvcl::math::rotate(model_angle, 0.0f, 1.0f, 0.0f);
@@ -382,7 +384,7 @@ void display()
   float x = -20.0f;
   for(int i=0; i<10; i++){
     S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
-    T = kmuvcl::math::translate(x, 0.0f, -15.0f);
+    T = kmuvcl::math::translate(x, 0.0f, -20.0f);
     mat_Model = T * S;
     mat_PVM = mat_Proj*mat_View*mat_Model;
 
