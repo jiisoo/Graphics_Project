@@ -69,6 +69,7 @@ float size = 1.0f;
 
 std::chrono::time_point<std::chrono::system_clock> prev, curr;
 
+/*
 void mouseButton(int xCursor, int yCursor){
     GLdouble projection[16];
     GLdouble modelView[16];
@@ -86,7 +87,7 @@ void mouseButton(int xCursor, int yCursor){
 	printf("실패\n");
     }
 }
-
+*/
 void createGLUTMenus()
 {
     int menu, submenu1, submenu2;
