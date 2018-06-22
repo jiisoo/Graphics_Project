@@ -24,6 +24,7 @@ void processMenuEvents(int option);
 void setBigger(int option);
 void setSmaller(int option);
 void createGLUTMenus();
+void mouseButton(int xCursor, int yCursor);
 
 GLuint program;
 
@@ -67,6 +68,24 @@ float model_angle = 0.0f;
 float size = 1.0f;
 
 std::chrono::time_point<std::chrono::system_clock> prev, curr;
+
+void mouseButton(int xCursor, int yCursor){
+    GLdouble projection[16];
+    GLdouble modelView[16];
+    GLint viewPort[4];
+    glGetDoublev(GL_PROJECTION_MATRIX, projection);
+    glGetDoublev(GL_MODELVIEW_MATRIX, modelView);
+    glGetIntegerv(GL_VIEWPORT, viewPort);
+
+    GLfloat zCursor, winX, winY;
+    winX = (float)xCursor;
+    winY = (float)viewPort[3]-(float)yCursor;
+    glReadPixels((int)winX, (int)winY, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &zCursor);
+    
+    if(gluUnProject(winX, winY, zCursor, modelView, projection, viewPort, &wx, &wy, &wz)==GLU_FALSE){
+	printf("실패\n");
+    }
+}
 
 void createGLUTMenus()
 {
