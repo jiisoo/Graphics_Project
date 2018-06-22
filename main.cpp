@@ -79,7 +79,7 @@ int main(int argc, char* argv[])
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
   glutInitWindowPosition(100, 100);
-  glutInitWindowSize(640, 640);
+  glutInitWindowSize(900, 900);
   glutCreateWindow("Modeling & Navigating Your Studio");
 
   glutDisplayFunc(display);
@@ -381,9 +381,9 @@ void display()
     loc_u_material_specular, loc_u_material_shininess);
 
 //Grass_02
-  float x = -20.0f;
-  for(int i=0; i<10; i++){
-    S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
+  float x = -10.0f;
+  for(int i=0; i<5; i++){
+    S = kmuvcl::math::scale(5.0f, 1.0f, 10.0f);
     T = kmuvcl::math::translate(x, 0.0f, -20.0f);
     mat_Model = T * S;
     mat_PVM = mat_Proj*mat_View*mat_Model;
