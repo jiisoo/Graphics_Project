@@ -54,7 +54,7 @@ GLint  loc_u_material_shininess;
 
 kmuvcl::math::mat4x4f   mat_PVM;
 
-kmuvcl::math::vec4f light_vector      = kmuvcl::math::vec4f(10.0f, 10.0f, 10.0f);
+kmuvcl::math::vec4f light_vector      = kmuvcl::math::vec4f(10.0f,10.0f, 10.0f);
 kmuvcl::math::vec4f light_ambient     = kmuvcl::math::vec4f(1.0f, 1.0f, 1.0f, 1.0f);
 kmuvcl::math::vec4f light_diffuse     = kmuvcl::math::vec4f(1.0f, 1.0f, 1.0f, 1.0f);
 kmuvcl::math::vec4f light_specular    = kmuvcl::math::vec4f(1.0f, 1.0f, 1.0f, 1.0f);
@@ -186,7 +186,7 @@ void init()
   g_bird.load_simple_obj("./object/lowpoly_bird.obj");
   g_grass.load_simple_obj("./object/grass/Grass_02.obj");
   g_gate.load_simple_obj("./object/gate.obj");
-  g_rock.load_simple_obj("./object/Rock.obj");
+  g_rock.load_simple_obj("./object/Rock/Rock.obj");
 //  g_wall.load_simple_obj("./object/Wall/grade.obj");
 
   glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -455,7 +455,7 @@ void display()
     loc_u_material_specular, loc_u_material_shininess);
 
 //Grass_02
-  float x = -10.0f;
+  float x = -8.0f;
   for(int i=0; i<5; i++){
     S = kmuvcl::math::scale(5.0f, 1.0f, 10.0f);
     T = kmuvcl::math::translate(x, 0.0f, -20.0f);
