@@ -20,6 +20,7 @@ void Camera::move_forward(float delta)
   //detext collision
   if( ((2.0f <= position_(0) && position_(0)<= 4.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f ))//allo
     || ((-4.0f <= position_(0) && position_(0)<=-2.0f) && ( -25.0f<=position_(2) && position_(2)<= -13.0f ))//tricera
+    || ((13.0f <= position_(0) && position_(0)<=17.0f) && ( -27.0f<=position_(2) && position_(2)<= -13.0f ))//stry
     || ((8.3f <= position_(0) && position_(0)<=9.7f) && ( -24.0f<=position_(2) && position_(2)<= -16.0f ))//dilo
     || ((2.0f <= position_(0) && position_(0)<=3.0f) && ( -3.0f<=position_(2) && position_(2)<= 5.0f ))//museum
     || ((-3.0f <= position_(0) && position_(0)<=-2.0f) && ( -3.0f<=position_(2) && position_(2)<= 5.0f ))//museum
@@ -36,6 +37,7 @@ void Camera::move_backward(float delta)
       position_(i)-=front_dir_(i)*delta;
   if( ((2.0f <= position_(0) && position_(0)<= 4.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f ))//allo
     ||((-4.0f <= position_(0) && position_(0)<=-2.0f) && ( -25.0f<=position_(2) && position_(2)<= -13.0f ))//tricera
+    || ((14.0f <= position_(0) && position_(0)<=16.0f) && ( -27.0f<=position_(2) && position_(2)<= -13.0f ))//stry
     ||((8.3f <= position_(0) && position_(0)<=9.7f) && ( -24.0f<=position_(2) && position_(2)<= -16.0f ))//dilo
     || ((2.0f <= position_(0) && position_(0)<=3.0f) && ( -3.0f<=position_(2) && position_(2)<= 5.0f ))//museum
     || ((-3.0f <= position_(0) && position_(0)<=-2.0f) && ( -3.0f<=position_(2) && position_(2)<= 5.0f ))//museum
@@ -54,6 +56,7 @@ void Camera::move_left(float delta)
 
   if( ((2.0f <= position_(0) && position_(0)<= 4.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f ))//allo
     ||((-4.0f <= position_(0) && position_(0)<=-2.0f) && ( -25.0f<=position_(2) && position_(2)<= -13.0f ))//tricera
+    || ((14.0f <= position_(0) && position_(0)<=16.0f) && ( -27.0f<=position_(2) && position_(2)<= -13.0f ))//stry    
     ||((8.3f <= position_(0) && position_(0)<=9.7f) && ( -24.0f<=position_(2) && position_(2)<= -16.0f ))//dilo
     || ((2.0f <= position_(0) && position_(0)<=3.0f) && ( -3.0f<=position_(2) && position_(2)<= 5.0f ))//museum
     || ((-3.0f <= position_(0) && position_(0)<=-2.0f) && ( -3.0f<=position_(2) && position_(2)<= 5.0f ))//museum
@@ -71,6 +74,7 @@ void Camera::move_right(float delta)
 
   if( ((2.0f <= position_(0) && position_(0)<= 4.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f ))//allo
     ||((-4.0f <= position_(0) && position_(0)<=-2.0f) && ( -25.0f<=position_(2) && position_(2)<= -13.0f ))//tricera
+    || ((14.0f <= position_(0) && position_(0)<=16.0f) && ( -27.0f<=position_(2) && position_(2)<= -13.0f ))//stry   
     ||((8.3f <= position_(0) && position_(0)<=9.7f) && ( -24.0f<=position_(2) && position_(2)<= -16.0f ))//dilo
     || ((2.0f <= position_(0) && position_(0)<=3.0f) && ( -3.0f<=position_(2) && position_(2)<= 5.0f ))//museum
     || ((-3.0f <= position_(0) && position_(0)<=-2.0f) && ( -3.0f<=position_(2) && position_(2)<= 5.0f ))//museum
