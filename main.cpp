@@ -20,6 +20,10 @@ void reshape(int, int);
 void idle();
 void keyboard(unsigned char, int, int);
 void special(int, int, int);
+void processMenuEvents(int option);
+void setBigger(int option);
+void setSmaller(int option);
+void createGLUTMenus();
 
 GLuint program;
 
@@ -60,8 +64,77 @@ std::string g_filename;
 
 float model_scale = 1.0f;
 float model_angle = 0.0f;
+float size = 1.0f;
 
 std::chrono::time_point<std::chrono::system_clock> prev, curr;
+
+void createGLUTMenus()
+{
+    int menu, submenu1, submenu2;
+
+    submenu1 = glutCreateMenu(setBigger);
+    glutAddMenuEntry("2",1);
+    glutAddMenuEntry("2.5",2);
+    glutAddMenuEntry("3",3);
+
+    submenu2 = glutCreateMenu(setSmaller);
+    glutAddMenuEntry("0.8",1);
+    glutAddMenuEntry("0.6",2);
+    glutAddMenuEntry("0.3",3);
+
+
+    menu = glutCreateMenu(processMenuEvents);
+    glutAddSubMenu("Bigger",submenu1);
+    glutAddSubMenu("Smaller",submenu2);
+
+    glutAttachMenu(GLUT_RIGHT_BUTTON);
+  }
+
+void processMenuEvents(int option)
+{
+    switch (option)
+    {
+        case 7 :
+            break;
+    }
+}
+
+void setBigger(int option)
+{
+    switch (option)
+    {
+        case 1 :
+            size=2.0f;
+            break;
+        case 2 :
+            size=2.5f;
+            break;
+        case 3 :
+            size=3.0f;
+            break;
+
+    }
+    glutPostRedisplay();
+}
+
+void setSmaller(int option)
+{
+    switch (option)
+    {
+        case 1 :
+            size=0.8f;
+            break;
+        case 2 :
+            size=0.6f;
+            break;
+        case 3 :
+            size=0.3f;
+            break;
+
+    }
+    glutPostRedisplay();
+}
+
 
 int main(int argc, char* argv[])
 {
@@ -87,6 +160,7 @@ int main(int argc, char* argv[])
   glutKeyboardFunc(keyboard);
   glutSpecialFunc(special);
   glutIdleFunc(idle);
+  createGLUTMenus();
 
   if (glewInit() != GLEW_OK)
   {
@@ -229,7 +303,7 @@ void display()
     loc_u_material_specular, loc_u_material_shininess);
 
 
-/////////////////////dilo///////////////////////////////
+/////////////////////dilo 분홍이///////////////////////////////
   S = kmuvcl::math::scale(2.0f, 2.0f, 2.0f);
   R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
   T = kmuvcl::math::translate(9.0f, 0.0f, -20.0f); //바꾸지말기
@@ -260,8 +334,8 @@ void display()
     loc_u_material_ambient, loc_u_material_diffuse,
     loc_u_material_specular, loc_u_material_shininess);
 
-///////////////////////////allo//////////////////////////////
-  S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
+///////////////////////////allo 파랑이//////////////////////////////
+  S = kmuvcl::math::scale(size, size, size);
   R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
   T = kmuvcl::math::translate(3.0f, 0.0f, -20.0f); //바꾸지 말기
   mat_Model = T * S * R;
@@ -291,7 +365,7 @@ void display()
     loc_u_material_specular, loc_u_material_shininess);
 
 
-/////////////////////Triceratops//////////////////////
+/////////////////////Triceratops 노랑이//////////////////////
   S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
   R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
   T = kmuvcl::math::translate(-3.0f, 0.0f, -20.0f);//바꾸지말기
