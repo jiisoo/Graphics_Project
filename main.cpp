@@ -177,8 +177,7 @@ int main(int argc, char* argv[])
 
 void init()
 {
-  //g_model.load_simple_obj(g_filename);
-  //g_model.print();
+  
   g_trike.load_simple_obj("./object/Triceratops/trike.obj");
   g_cctv.load_simple_obj("./object/Camera/Camera.obj");
   g_dilo.load_simple_obj("./object/Dilophosaurus/dilo.obj");
