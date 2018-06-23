@@ -502,7 +502,7 @@ if(wall == 1){
   }
 ////////////////////Rock//////////////////////
   if (rock == 1){
-    S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
+    S = kmuvcl::math::scale(2.0f, 4.0f, 3.0f);
     T = kmuvcl::math::translate(rock_tx, rock_ty, rock_tz);
     mat_Model = T * S ;
     mat_PVM = mat_Proj*mat_View*mat_Model;
@@ -858,7 +858,7 @@ if(wall == 1){
   if(bird == 1){
     S = kmuvcl::math::scale(0.2f, 0.2f, 0.2f);
     R = kmuvcl::math::rotate(model_angle, 0.0f, 1.0f, 0.0f);
-    T = kmuvcl::math::translate(-5.0f, 7.0f, -10.0f);
+    T = kmuvcl::math::translate(bird_tx, bird_ty, bird_tz);
     mat_Model = T * S * R;
     mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -890,7 +890,7 @@ if(wall == 1){
   if(grass == 1){
     for(int i=0; i<5; i++){
       S = kmuvcl::math::scale(5.0f, 1.0f, 10.0f);
-      T = kmuvcl::math::translate(-8.0f, 0.0f, -20.0f);
+      T = kmuvcl::math::translate(grass_tx, grass_ty, grass_tz);
       mat_Model = T * S;
       mat_PVM = mat_Proj*mat_View*mat_Model;
 
