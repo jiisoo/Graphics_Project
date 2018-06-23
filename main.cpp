@@ -245,10 +245,7 @@ void init()
     while(!instream.eof())
     {
       instream >> tmp;
-<<<<<<< HEAD
       std::cout << tmp << std::endl;
-=======
->>>>>>> ca97b3474724cb1e164acf7b0a99f3766c6af1f8
       if(tmp.compare("./object/Triceratops/trike.obj")==0){
         trike = 1;
         instream >> trike_tx >> trike_ty >> trike_tz;
@@ -476,7 +473,7 @@ if(wall == 1){
   if( tree == 1)
   {
     S = kmuvcl::math::scale(2.0f, 2.0f, 2.0f);
-    T = kmuvcl::math::translate(-7.0f, 0.0f, -40.0f);
+    T = kmuvcl::math::translate(tree_tx, tree_ty, tree_tz);
     mat_Model = T * S;
     mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -506,7 +503,7 @@ if(wall == 1){
 ////////////////////Rock//////////////////////
   if (rock == 1){
     S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
-    T = kmuvcl::math::translate(-7.0f, 0.0f, -20.0f);
+    T = kmuvcl::math::translate(rock_tx, rock_ty, rock_tz);
     mat_Model = T * S ;
     mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -537,7 +534,7 @@ if(wall == 1){
 ////////////////////Gate//////////////////////
   if(gate == 1){
     S = kmuvcl::math::scale(13.0f, 13.0f, 13.0f);
-    T = kmuvcl::math::translate(0.0f, 0.0f, 5.0f);
+    T = kmuvcl::math::translate(gate_tx, gate_ty, gate_tz);
     mat_Model = T * S ;
     mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -569,7 +566,7 @@ if(wall == 1){
   if(dryo == 1){
     S = kmuvcl::math::scale(4.0f, 4.0f, 4.0f);
     R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
-    T = kmuvcl::math::translate(-12.0f, 0.0f, -20.0f); //바꾸지말기
+    T = kmuvcl::math::translate(dryo_tx, dryo_ty, dryo_tz); //바꾸지말기
     mat_Model = T * S *R;
     mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -602,7 +599,7 @@ if(wall == 1){
   if(stry == 1){
     S = kmuvcl::math::scale(2.0f, 2.0f, 2.0f);
     R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
-    T = kmuvcl::math::translate(15.0f, 0.0f, -20.0f); //바꾸지말기
+    T = kmuvcl::math::translate(stry_tx, stry_ty, stry_tz); //바꾸지말기
     mat_Model = T * S *R;
     mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -635,7 +632,7 @@ if(wall == 1){
     if(dilo == 1){
       S = kmuvcl::math::scale(2.0f, 2.0f, 2.0f);
       R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
-      T = kmuvcl::math::translate(9.0f, 0.0f, -20.0f); //바꾸지말기
+      T = kmuvcl::math::translate(dilo_tx, dilo_ty, dilo_tz); //바꾸지말기
       mat_Model = T * S *R;
       mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -668,7 +665,7 @@ if(wall == 1){
   if(allo == 1){
     S = kmuvcl::math::scale(size, size, size);
     R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
-    T = kmuvcl::math::translate(3.0f, 0.0f, -20.0f); //바꾸지 말기
+    T = kmuvcl::math::translate(allo_tx, allo_ty, allo_tz); //바꾸지 말기
     mat_Model = T * S * R;
     mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -701,7 +698,7 @@ if(wall == 1){
   if(trike == 1){
     S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
     R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
-    T = kmuvcl::math::translate(-3.0f, 0.0f, -20.0f);//바꾸지말기
+    T = kmuvcl::math::translate(trike_tx, trike_ty, trike_tz);//바꾸지말기
     mat_Model = T * S * R;
     mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -734,7 +731,7 @@ if(wall == 1){
   if(albert == 1){
     S = kmuvcl::math::scale(1.5f, 1.5f, 1.5f);
     R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
-    T = kmuvcl::math::translate(0.0f, 0.0f, -40.0f);
+    T = kmuvcl::math::translate(albert_tx, albert_ty, albert_tz);
     mat_Model = T * S * R;
     mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -766,7 +763,7 @@ if(wall == 1){
   if(carcar == 1){
     S = kmuvcl::math::scale(1.5f, 1.5f, 1.5f);
     R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
-    T = kmuvcl::math::translate(6.0f, 0.0f, -40.0f);
+    T = kmuvcl::math::translate(carcar_tx, carcar_ty, carcar_tz);
     mat_Model = T * S * R;
     mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -798,7 +795,7 @@ if(wall == 1){
   if(steg == 1){
     S = kmuvcl::math::scale(1.5f, 1.5f, 1.5f);
     R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
-    T = kmuvcl::math::translate(12.0f, 0.0f, -40.0f);
+    T = kmuvcl::math::translate(steg_tx, steg_ty, steg_tz);
     mat_Model = T * S * R;
     mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -829,7 +826,7 @@ if(wall == 1){
 ////////////////////////////cctv//////////////////////////////
   if(camera == 1){
     S = kmuvcl::math::scale(1.5f, 1.5f, 1.5f);
-    T = kmuvcl::math::translate(0.0f, 10.0f, -13.0f);
+    T = kmuvcl::math::translate(camera_tx, camera_ty, camera_tz);
     mat_Model = T * S;
     mat_PVM = mat_Proj*mat_View*mat_Model;
 
