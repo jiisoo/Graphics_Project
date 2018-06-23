@@ -245,77 +245,77 @@ void init()
     while(!instream.eof())
     {
       instream >> tmp;
-      if(tmp.compare("./object/Triceratops/trike.obj")){
+      if(tmp.compare("./object/Triceratops/trike.obj")==0){
         trike = 1;
         instream >> trike_tx >> trike_ty >> trike_tz;
         std::cout << tmp << std::endl;
       }
-      else if(tmp.compare("./object/Camera/Camera.obj")){
+      else if(tmp.compare("./object/Camera/Camera.obj")==0){
         camera = 1;
         instream >> camera_tx >> camera_ty >> camera_tz;
         std::cout << tmp << std::endl;
       }
-      else if(tmp.compare("./object/Dilophosaurus/dilo.obj")){
+      else if(tmp.compare("./object/Dilophosaurus/dilo.obj")==0){
         dilo = 1;
         instream  >> dilo_tx >> dilo_ty >> dilo_tz;
         std::cout << tmp << std::endl;
       }
-      else if(tmp.compare("./object/Allosarus/allo.obj")){
+      else if(tmp.compare("./object/Allosarus/allo.obj")==0){
         allo = 1;
         instream >> allo_tx >> allo_ty >> allo_tz;
         std::cout << tmp << std::endl;
       }
-      else if(tmp.compare("./object/lowpoly_bird.obj")){
+      else if(tmp.compare("./object/lowpoly_bird.obj")==0){
         bird = 1;
         instream >> bird_tx >> bird_ty >> bird_tz;
         std::cout << tmp << std::endl;
       }
-      else if(tmp.compare("./object/grass/Grass_02.obj")){
+      else if(tmp.compare("./object/grass/Grass_02.obj")==0){
         grass = 1;
         instream >> grass_tx >> grass_ty >> grass_tz;
         std::cout << tmp << std::endl;
       }
-      else if(tmp.compare("./object/gate.obj")){
+      else if(tmp.compare("./object/gate.obj")==0){
         gate = 1;
         instream >> gate_tx >> gate_ty >> gate_tz;
         std::cout << tmp << std::endl;
       }
-      else if(tmp.compare("./object/Rock/Rock.obj")){
+      else if(tmp.compare("./object/Rock/Rock.obj")==0){
         rock = 1;
         instream >> rock_tx >> rock_ty >> rock_tz;
         std::cout << tmp << std::endl;
       }
-      else if(tmp.compare("./object/wall/oldWall.obj")){
+      else if(tmp.compare("./object/wall/oldWall.obj")==0){
         wall = 1;
         instream >> wall_tx >> wall_ty >> wall_tz;
         std::cout << tmp << std::endl;
       }
-      else if(tmp.compare("./object/Styracosarus/stry.obj")){
+      else if(tmp.compare("./object/Styracosarus/stry.obj")==0){
         stry = 1;
         instream >> stry_tx >> stry_ty >> stry_tz;
         std::cout << tmp << std::endl;
       }
-      else if(tmp.compare("./object/Dryosarus/dryo.obj")){
+      else if(tmp.compare("./object/Dryosarus/dryo.obj")==0){
         dryo = 1;
         instream >> dryo_tx >> dryo_ty >> dryo_tz;
         std::cout << tmp << std::endl;
       }
-      else if(tmp.compare("./object/Albertosaurus/albert.obj")){
+      else if(tmp.compare("./object/Albertosaurus/albert.obj")==0){
         albert = 1;
         instream >> albert_tx >> albert_ty >> albert_tz;
         std::cout << tmp << std::endl;
       }
-      else if(tmp.compare("./object/Carcharodontosaurus/carcar.obj")){
+      else if(tmp.compare("./object/Carcharodontosaurus/carcar.obj")==0){
         carcar = 1;
         instream >> carcar_tx >> carcar_ty >> carcar_tz;
         std::cout << tmp << std::endl;
       }
-      else if(tmp.compare("./object/Stegosarus/steg.obj")){
+      else if(tmp.compare("./object/Stegosarus/steg.obj")==0){
         steg = 1;
         instream >> steg_tx >> steg_ty >> steg_tz;
         std::cout << tmp << std::endl;
       }
-      else if(tmp.compare("./object/tree/Tree.obj")){
+      else if(tmp.compare("./object/tree/Tree.obj")==0){
         tree = 1;
         instream >> tree_tx >> tree_ty >> tree_tz;
         std::cout << tmp << std::endl;
