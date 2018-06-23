@@ -59,23 +59,25 @@ GLint  loc_u_material_specular;
 GLint  loc_u_material_shininess;
 
 int trike = 0, camera = 0, dilo = 0, allo = 0, bird = 0, grass = 0, gate = 0, rock = 0, wall = 0, stry = 0, dryo = 0, albert = 0, carcar = 0, steg = 0, tree = 0;
-float trike_tx, trike_ty, trike_tz;
-float camera_tx, camera_ty, camera_tz;
-float dilo_tx, dilo_ty, dilo_tz;
-float allo_tx, allo_ty, allo_tz;
-float bird_tx, bird_ty, bird_tz;
-float grass_tx, grass_ty, grass_tz;
-float gate_tx, gate_ty, gate_tz;
-float rock_tx, rock_ty, rock_tz;
-float wall_tx, wall_ty, wall_tz;
-float stry_tx, stry_ty, stry_tz;
-float dryo_tx, dryo_ty, dryo_tz;
-float albert_tx, albert_ty, albert_tz;
-float carcar_tx, carcar_ty, carcar_tz;
-float steg_tx, steg_ty, steg_tz;
-float tree_tx, tree_ty, tree_tz;
+
+float trike_tx, trike_ty, trike_tz, trike_sx, trike_sy, trike_sz;
+float camera_tx, camera_ty, camera_tz, camera_sx, camera_sy, camera_sz;
+float dilo_tx, dilo_ty, dilo_tz, dilo_sx, dilo_sy, dilo_sz;
+float allo_tx, allo_ty, allo_tz, allo_sx, allo_sy, allo_sz;;
+float bird_tx, bird_ty, bird_tz, bird_sx, bird_sy, bird_sz;
+float grass_tx, grass_ty, grass_tz, grass_sx, grass_sy, grass_sz;
+float gate_tx, gate_ty, gate_tz, gate_sx, gate_sy, gate_sz;
+float rock_tx, rock_ty, rock_tz, rock_sx, rock_sy, rock_sz;
+float wall_tx, wall_ty, wall_tz, wall_sx, wall_sy, wall_sz;
+float stry_tx, stry_ty, stry_tz, stry_sx, stry_sy, stry_sz;
+float dryo_tx, dryo_ty, dryo_tz, dryo_sx, dryo_sy, dryo_sz;
+float albert_tx, albert_ty, albert_tz, albert_sx, albert_sy, albert_sz;
+float carcar_tx, carcar_ty, carcar_tz, carcar_sx, carcar_sy, carcar_sz;
+float steg_tx, steg_ty, steg_tz,  steg_sx, steg_sy, steg_sz;
+float tree_tx, tree_ty, tree_tz, tree_sx, tree_sy, tree_sz;
 
 static GLfloat TopLeftX, TopLeftY, BottomRightX, BottomRightY;
+
 kmuvcl::math::mat4x4f   mat_PVM;
 
 kmuvcl::math::vec4f light_vector      = kmuvcl::math::vec4f(10.0f,10.0f, 10.0f);
@@ -92,25 +94,6 @@ float size = 1.0f;
 
 std::chrono::time_point<std::chrono::system_clock> prev, curr;
 
-/*
-void mouseButton(int xCursor, int yCursor){
-    GLdouble projection[16];
-    GLdouble modelView[16];
-    GLint viewPort[4];
-    glGetDoublev(GL_PROJECTION_MATRIX, projection);
-    glGetDoublev(GL_MODELVIEW_MATRIX, modelView);
-    glGetIntegerv(GL_VIEWPORT, viewPort);
-
-    GLfloat zCursor, winX, winY;
-    winX = (float)xCursor;
-    winY = (float)viewPort[3]-(float)yCursor;
-    glReadPixels((int)winX, (int)winY, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &zCursor);
-
-    if(gluUnProject(winX, winY, zCursor, modelView, projection, viewPort, &wx, &wy, &wz)==GLU_FALSE){
-	printf("실패\n");
-    }
-}
-*/
 void createGLUTMenus()
 {
     int menu, submenu1, submenu2;
@@ -227,7 +210,6 @@ int main(int argc, char* argv[])
 
 
   init();
-  //glutKeyboardFunc(MyKeyboard);
   glutMouseFunc(MyMouseClick);
   glutMainLoop();
 
@@ -236,88 +218,84 @@ int main(int argc, char* argv[])
 
 void init()
 {
-    std::cout << trike << std::endl;
-    std::cout << camera << std::endl;
-    std::cout << dilo << std::endl;
     std::string tmp;
 
     std::ifstream instream("scene.txt");
     while(!instream.eof())
     {
       instream >> tmp;
-      std::cout << tmp << std::endl;
       if(tmp.compare("./object/Triceratops/trike.obj")==0){
         trike = 1;
-        instream >> trike_tx >> trike_ty >> trike_tz;
-        std::cout << trike_tz << std::endl;
+        instream >> trike_tx >> trike_ty >> trike_tz >> trike_sx >> trike_sy >> trike_sz;
+        //std::cout << trike_tz << std::endl;
       }
       else if(tmp.compare("./object/Camera/Camera.obj")==0){
         camera = 1;
-        instream >> camera_tx >> camera_ty >> camera_tz;
+        instream >> camera_tx >> camera_ty >> camera_tz >> camera_sx >> camera_sy >> camera_sz;
       }
       else if(tmp.compare("./object/Dilophosaurus/dilo.obj")==0){
         dilo = 1;
-        instream  >> dilo_tx >> dilo_ty >> dilo_tz;
+        instream  >> dilo_tx >> dilo_ty >> dilo_tz  >> dilo_sx >> dilo_sy >> dilo_sz;
         //std::cout << tmp << std::endl;
       }
       else if(tmp.compare("./object/Allosarus/allo.obj")==0){
         allo = 1;
-        instream >> allo_tx >> allo_ty >> allo_tz;
+        instream >> allo_tx >> allo_ty >> allo_tz >> allo_sx >> allo_sy >> allo_sz;
         //std::cout << tmp << std::endl;
       }
       else if(tmp.compare("./object/lowpoly_bird.obj")==0){
         bird = 1;
-        instream >> bird_tx >> bird_ty >> bird_tz;
+        instream >> bird_tx >> bird_ty >> bird_tz >> bird_sx >> bird_sy >> bird_sz;
         //std::cout << tmp << std::endl;
       }
       else if(tmp.compare("./object/grass/Grass_02.obj")==0){
         grass = 1;
-        instream >> grass_tx >> grass_ty >> grass_tz;
+        instream >> grass_tx >> grass_ty >> grass_tz >> grass_sx >> grass_sy >> grass_sz;
         //std::cout << tmp << std::endl;
       }
       else if(tmp.compare("./object/gate.obj")==0){
         gate = 1;
-        instream >> gate_tx >> gate_ty >> gate_tz;
+        instream >> gate_tx >> gate_ty >> gate_tz >> gate_sx >> gate_sy >> gate_sz;
         //std::cout << tmp << std::endl;
       }
       else if(tmp.compare("./object/Rock/Rock.obj")==0){
         rock = 1;
-        instream >> rock_tx >> rock_ty >> rock_tz;
+        instream >> rock_tx >> rock_ty >> rock_tz >> rock_sx >> rock_sy >> rock_sz;
         //std::cout << tmp << std::endl;
       }
       else if(tmp.compare("./object/wall/oldWall.obj")==0){
         wall = 1;
-        instream >> wall_tx >> wall_ty >> wall_tz;
+        instream >> wall_tx >> wall_ty >> wall_tz >> wall_sx >> wall_sy >> wall_sz;
         //std::cout << tmp << std::endl;
       }
       else if(tmp.compare("./object/Styracosarus/stry.obj")==0){
         stry = 1;
-        instream >> stry_tx >> stry_ty >> stry_tz;
+        instream >> stry_tx >> stry_ty >> stry_tz >> stry_sx >> stry_sy >> stry_sz;
         //std::cout << tmp << std::endl;
       }
       else if(tmp.compare("./object/Dryosarus/dryo.obj")==0){
         dryo = 1;
-        instream >> dryo_tx >> dryo_ty >> dryo_tz;
+        instream >> dryo_tx >> dryo_ty >> dryo_tz >> dryo_sx >> dryo_sy >> dryo_sz;
         //std::cout << tmp << std::endl;
       }
       else if(tmp.compare("./object/Albertosaurus/albert.obj")==0){
         albert = 1;
-        instream >> albert_tx >> albert_ty >> albert_tz;
+        instream >> albert_tx >> albert_ty >> albert_tz >> albert_sx >> albert_sy >> albert_sz;
         //std::cout << tmp << std::endl;
       }
       else if(tmp.compare("./object/Carcharodontosaurus/carcar.obj")==0){
         carcar = 1;
-        instream >> carcar_tx >> carcar_ty >> carcar_tz;
+        instream >> carcar_tx >> carcar_ty >> carcar_tz >> carcar_sx >> carcar_sy >> carcar_sz;
         //std::cout << tmp << std::endl;
       }
       else if(tmp.compare("./object/Stegosarus/steg.obj")==0){
         steg = 1;
-        instream >> steg_tx >> steg_ty >> steg_tz;
+        instream >> steg_tx >> steg_ty >> steg_tz >> steg_sx >> steg_sy >> steg_sz;
         //std::cout << tmp << std::endl;
       }
       else if(tmp.compare("./object/tree/Tree.obj")==0){
         tree = 1;
-        instream >> tree_tx >> tree_ty >> tree_tz;
+        instream >> tree_tx >> tree_ty >> tree_tz >> tree_sx >> tree_sy >> tree_sz;
         //std::cout << tmp << std::endl;
       }
       if(instream.eof()){
@@ -325,10 +303,6 @@ void init()
       }
     }
     instream.close();
-
-    std::cout << trike << std::endl;
-      std::cout << camera << std::endl;
-    std::cout << dilo << std::endl;
 
   g_trike.load_simple_obj("./object/Triceratops/trike.obj");
   g_cctv.load_simple_obj("./object/Camera/Camera.obj");
@@ -404,11 +378,11 @@ void display()
 // TODO: draw furniture by properly transforming each object
 ////////////////////Wall//////////////////////
 
-/*
+
 float wall_x = -17.0f;
 for(int i=0; i<2; i++)
 {
-  S = kmuvcl::math::scale(4.0f, 2.0f, 4.0f);
+  S = kmuvcl::math::scale(4.0f, 4.0f, 4.0f);
   R = kmuvcl::math::rotate(-90.0f, 0.0f, -90.0f, 0.0f);
   T = kmuvcl::math::translate(wall_x, 0.0f, -25.0f);
   mat_Model = T * S * R;
@@ -438,9 +412,9 @@ for(int i=0; i<2; i++)
     loc_u_material_specular, loc_u_material_shininess);
   wall_x += 34.0f;
 }
-*/
+
 if(wall == 1){
-  S = kmuvcl::math::scale(5.0f, 2.0f, 5.0f);
+  S = kmuvcl::math::scale(wall_sx, wall_sy, wall_sz);
   T = kmuvcl::math::translate(wall_tx, wall_ty, wall_tz);
   mat_Model = T * S;
   mat_PVM = mat_Proj*mat_View*mat_Model;
@@ -472,7 +446,7 @@ if(wall == 1){
 /////////////////// Tree //////////////////////
   if( tree == 1)
   {
-    S = kmuvcl::math::scale(2.0f, 2.0f, 2.0f);
+    S = kmuvcl::math::scale(tree_sx, tree_sy, tree_sz);
     T = kmuvcl::math::translate(tree_tx, tree_ty, tree_tz);
     mat_Model = T * S;
     mat_PVM = mat_Proj*mat_View*mat_Model;
@@ -502,7 +476,7 @@ if(wall == 1){
   }
 ////////////////////Rock//////////////////////
   if (rock == 1){
-    S = kmuvcl::math::scale(2.0f, 4.0f, 3.0f);
+    S = kmuvcl::math::scale(rock_sx, rock_sy, rock_sz);
     T = kmuvcl::math::translate(rock_tx, rock_ty, rock_tz);
     mat_Model = T * S ;
     mat_PVM = mat_Proj*mat_View*mat_Model;
@@ -533,7 +507,7 @@ if(wall == 1){
 
 ////////////////////Gate//////////////////////
   if(gate == 1){
-    S = kmuvcl::math::scale(13.0f, 13.0f, 13.0f);
+    S = kmuvcl::math::scale(gate_sx, gate_sy, gate_sz);
     T = kmuvcl::math::translate(gate_tx, gate_ty, gate_tz);
     mat_Model = T * S ;
     mat_PVM = mat_Proj*mat_View*mat_Model;
@@ -564,7 +538,7 @@ if(wall == 1){
 
 /////////////////////dryo///////////////////////////////
   if(dryo == 1){
-    S = kmuvcl::math::scale(4.0f, 4.0f, 4.0f);
+    S = kmuvcl::math::scale(dryo_sx, dryo_sy, dryo_sz);
     R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
     T = kmuvcl::math::translate(dryo_tx, dryo_ty, dryo_tz); //바꾸지말기
     mat_Model = T * S *R;
@@ -597,7 +571,7 @@ if(wall == 1){
 
 /////////////////////stry///////////////////////////////
   if(stry == 1){
-    S = kmuvcl::math::scale(2.0f, 2.0f, 2.0f);
+    S = kmuvcl::math::scale(stry_sx, stry_sy, stry_sz);
     R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
     T = kmuvcl::math::translate(stry_tx, stry_ty, stry_tz); //바꾸지말기
     mat_Model = T * S *R;
@@ -630,7 +604,7 @@ if(wall == 1){
 
 /////////////////////dilo 분홍이///////////////////////////////
     if(dilo == 1){
-      S = kmuvcl::math::scale(2.0f, 2.0f, 2.0f);
+      S = kmuvcl::math::scale( dilo_sx, dilo_sy, dilo_sz);
       R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
       T = kmuvcl::math::translate(dilo_tx, dilo_ty, dilo_tz); //바꾸지말기
       mat_Model = T * S *R;
@@ -663,7 +637,7 @@ if(wall == 1){
 
 ///////////////////////////allo 파랑이//////////////////////////////
   if(allo == 1){
-    S = kmuvcl::math::scale(size, size, size);
+    S = kmuvcl::math::scale(allo_sx *size, allo_sy*size, allo_sz*size);
     R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
     T = kmuvcl::math::translate(allo_tx, allo_ty, allo_tz); //바꾸지 말기
     mat_Model = T * S * R;
@@ -696,7 +670,7 @@ if(wall == 1){
 
 /////////////////////Triceratops 노랑이//////////////////////
   if(trike == 1){
-    S = kmuvcl::math::scale(1.0f, 1.0f, 1.0f);
+    S = kmuvcl::math::scale(trike_sx, trike_sy, trike_sz);
     R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
     T = kmuvcl::math::translate(trike_tx, trike_ty, trike_tz);//바꾸지말기
     mat_Model = T * S * R;
@@ -729,7 +703,7 @@ if(wall == 1){
 
 //////////////////////albert   빨강이//////////////////////////////
   if(albert == 1){
-    S = kmuvcl::math::scale(1.5f, 1.5f, 1.5f);
+    S = kmuvcl::math::scale(albert_sx, albert_sy, albert_sz);
     R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
     T = kmuvcl::math::translate(albert_tx, albert_ty, albert_tz);
     mat_Model = T * S * R;
@@ -761,7 +735,7 @@ if(wall == 1){
 
 //////////////////////carcar  보라//////////////////////////////
   if(carcar == 1){
-    S = kmuvcl::math::scale(1.5f, 1.5f, 1.5f);
+    S = kmuvcl::math::scale(carcar_sx, carcar_sy, carcar_sz);
     R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
     T = kmuvcl::math::translate(carcar_tx, carcar_ty, carcar_tz);
     mat_Model = T * S * R;
@@ -793,7 +767,7 @@ if(wall == 1){
 
 //////////////////////steg  초록//////////////////////////////
   if(steg == 1){
-    S = kmuvcl::math::scale(1.5f, 1.5f, 1.5f);
+    S = kmuvcl::math::scale(steg_sx, steg_sy, steg_sz);
     R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
     T = kmuvcl::math::translate(steg_tx, steg_ty, steg_tz);
     mat_Model = T * S * R;
@@ -825,7 +799,7 @@ if(wall == 1){
 
 ////////////////////////////cctv//////////////////////////////
   if(camera == 1){
-    S = kmuvcl::math::scale(1.5f, 1.5f, 1.5f);
+    S = kmuvcl::math::scale( camera_sx, camera_sy, camera_sz);
     T = kmuvcl::math::translate(camera_tx, camera_ty, camera_tz);
     mat_Model = T * S;
     mat_PVM = mat_Proj*mat_View*mat_Model;
@@ -856,7 +830,7 @@ if(wall == 1){
 
 ///////////////////////////bird//////////////////////////////
   if(bird == 1){
-    S = kmuvcl::math::scale(0.2f, 0.2f, 0.2f);
+    S = kmuvcl::math::scale(bird_sx, bird_sy, bird_sz);
     R = kmuvcl::math::rotate(model_angle, 0.0f, 1.0f, 0.0f);
     T = kmuvcl::math::translate(bird_tx, bird_ty, bird_tz);
     mat_Model = T * S * R;
@@ -888,8 +862,9 @@ if(wall == 1){
 
 //Grass_02
   if(grass == 1){
+    grass_tx = -8.0f;
     for(int i=0; i<5; i++){
-      S = kmuvcl::math::scale(5.0f, 1.0f, 10.0f);
+      S = kmuvcl::math::scale( grass_sx, grass_sy, grass_sz);
       T = kmuvcl::math::translate(grass_tx, grass_ty, grass_tz);
       mat_Model = T * S;
       mat_PVM = mat_Proj*mat_View*mat_Model;
@@ -916,7 +891,7 @@ if(wall == 1){
       g_grass.draw(loc_a_vertex, loc_a_normal,
         loc_u_material_ambient, loc_u_material_diffuse,
         loc_u_material_specular, loc_u_material_shininess);
-      //tx+= 3.0f;
+      grass_tx+= 3.0f;
     }
   }
 
