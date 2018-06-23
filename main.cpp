@@ -171,12 +171,21 @@ void setSmaller(int option)
 // }
 void MyMouseClick(GLint Button, GLint State, GLint X, GLint Y)
 { 
+<<<<<<< HEAD
   TopLeftX = X;
   TopLeftY = Y;
   
   if(Button == GLUT_LEFT_BUTTON)
   {
      g_camera.mouse_click(TopLeftX/300.0, (900-TopLeftY)/300.0);
+=======
+  int x = X;
+  int y = Y;
+  
+  if(Button == GLUT_LEFT_BUTTON)
+  {
+     g_camera.mouse_click(x, y);
+>>>>>>> 57092384fd3cc2f9354fa65f51365fc2d05cef12
   }
 }
 
