@@ -155,6 +155,18 @@ void setSmaller(int option)
     glutPostRedisplay();
 }
 
+void MyKeyboard(unsigned char keypressed, int X, int Y)
+{
+  switch(keypressed)
+  {
+    case 'Q' :
+      exit(0);  break;
+    case 'q' :
+      exit(0);  break;
+    case 27 :
+     exit(0);  break;
+  }
+}
 
 int main(int argc, char* argv[])
 {
@@ -176,6 +188,7 @@ int main(int argc, char* argv[])
   glutCreateWindow("Modeling & Navigating Your Studio");
 
   glutDisplayFunc(display);
+
   glutReshapeFunc(reshape);
   glutKeyboardFunc(keyboard);
   glutSpecialFunc(special);
@@ -189,6 +202,7 @@ int main(int argc, char* argv[])
   }
 
   init();
+  glutKeyboardFunc(MyKeyboard);
 
   glutMainLoop();
 
