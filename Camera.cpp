@@ -14,12 +14,11 @@ void Camera::mouse_click(float X, float Y)
 {
   position_(0) = X;
   position_(1) = Y;
-<<<<<<< HEAD
+
   std::cout << position_(0) << "  " << position_(1) << std::endl;
-=======
->>>>>>> 57092384fd3cc2f9354fa65f51365fc2d05cef12
+
 }
-//0. 2. 25
+
 // TODO: fill up the following functions properly
 void Camera::move_forward(float delta)
 {
@@ -54,7 +53,7 @@ void Camera::move_backward(float delta)
   {
     for(int i=0; i<3; i++)
       position_(i)+=front_dir_(i)*delta;
-  }  
+  }
 
 }
 
@@ -65,7 +64,7 @@ void Camera::move_left(float delta)
 
   if( ((2.0f <= position_(0) && position_(0)<= 4.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f ))//allo
     ||((-4.0f <= position_(0) && position_(0)<=-2.0f) && ( -25.0f<=position_(2) && position_(2)<= -13.0f ))//tricera
-    || ((14.0f <= position_(0) && position_(0)<=16.0f) && ( -27.0f<=position_(2) && position_(2)<= -13.0f ))//stry    
+    || ((14.0f <= position_(0) && position_(0)<=16.0f) && ( -27.0f<=position_(2) && position_(2)<= -13.0f ))//stry
     ||((8.3f <= position_(0) && position_(0)<=9.7f) && ( -24.0f<=position_(2) && position_(2)<= -16.0f ))//dilo
     || ((2.0f <= position_(0) && position_(0)<=3.0f) && ( -3.0f<=position_(2) && position_(2)<= 5.0f ))//museum
     || ((-3.0f <= position_(0) && position_(0)<=-2.0f) && ( -3.0f<=position_(2) && position_(2)<= 5.0f ))//museum
@@ -83,7 +82,7 @@ void Camera::move_right(float delta)
 
   if( ((2.0f <= position_(0) && position_(0)<= 4.0f) && ( -25.0f<=position_(2) && position_(2)<= -15.0f ))//allo
     ||((-4.0f <= position_(0) && position_(0)<=-2.0f) && ( -25.0f<=position_(2) && position_(2)<= -13.0f ))//tricera
-    || ((14.0f <= position_(0) && position_(0)<=16.0f) && ( -27.0f<=position_(2) && position_(2)<= -13.0f ))//stry   
+    || ((14.0f <= position_(0) && position_(0)<=16.0f) && ( -27.0f<=position_(2) && position_(2)<= -13.0f ))//stry
     ||((8.3f <= position_(0) && position_(0)<=9.7f) && ( -24.0f<=position_(2) && position_(2)<= -16.0f ))//dilo
     || ((2.0f <= position_(0) && position_(0)<=3.0f) && ( -3.0f<=position_(2) && position_(2)<= 5.0f ))//museum
     || ((-3.0f <= position_(0) && position_(0)<=-2.0f) && ( -3.0f<=position_(2) && position_(2)<= 5.0f ))//museum
