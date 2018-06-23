@@ -555,7 +555,7 @@ void display()
     loc_u_material_ambient, loc_u_material_diffuse,
     loc_u_material_specular, loc_u_material_shininess);
 
-//////////////////////steg  보라//////////////////////////////
+//////////////////////steg  초록//////////////////////////////
   S = kmuvcl::math::scale(1.5f, 1.5f, 1.5f);
   R = kmuvcl::math::rotate(-90.0f, 90.0f, 0.0f, 0.0f);
   T = kmuvcl::math::translate(12.0f, 0.0f, -40.0f);
