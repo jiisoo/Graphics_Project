@@ -21,6 +21,7 @@ public:
   void rotate_right(float delta);
   void rotate_up(float delta);
 	void rotate_down(float delta);
+  void mouse_click(float X, float Y);
 
   const kmuvcl::math::vec3f&  position() const          { return  position_; }
   const kmuvcl::math::vec3f&  front_direction() const   { return  front_dir_; } 
