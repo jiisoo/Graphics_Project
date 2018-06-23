@@ -170,13 +170,26 @@ void setSmaller(int option)
 //   }
 // }
 void MyMouseClick(GLint Button, GLint State, GLint X, GLint Y)
+<<<<<<< HEAD
 {
+=======
+{ 
+<<<<<<< HEAD
+  TopLeftX = X;
+  TopLeftY = Y;
+  
+  if(Button == GLUT_LEFT_BUTTON)
+  {
+     g_camera.mouse_click(TopLeftX/300.0, (900-TopLeftY)/300.0);
+=======
+>>>>>>> 7782ba70e229b4d5cc68d64949b50affc36f3414
   int x = X;
   int y = Y;
 
   if(Button == GLUT_LEFT_BUTTON)
   {
      g_camera.mouse_click(x, y);
+>>>>>>> 57092384fd3cc2f9354fa65f51365fc2d05cef12
   }
 }
 
@@ -197,7 +210,7 @@ int main(int argc, char* argv[])
 
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-  glutInitWindowPosition(100, 100);
+  glutInitWindowPosition(0, 0);
   glutInitWindowSize(900, 900);
   glutCreateWindow("Modeling & Navigating Your Studio");
 
@@ -273,6 +286,7 @@ void init()
 
 void display()
 {
+  glViewport(0, 0, 900, 900);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   glUseProgram(program);

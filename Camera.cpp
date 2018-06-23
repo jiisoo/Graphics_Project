@@ -14,6 +14,10 @@ void Camera::mouse_click(float X, float Y)
 {
   position_(0) = X;
   position_(1) = Y;
+<<<<<<< HEAD
+  std::cout << position_(0) << "  " << position_(1) << std::endl;
+=======
+>>>>>>> 57092384fd3cc2f9354fa65f51365fc2d05cef12
 }
 //0. 2. 25
 // TODO: fill up the following functions properly
