@@ -160,7 +160,6 @@ void setSmaller(int option)
 
 void MyMouseClick(GLint Button, GLint State, GLint X, GLint Y)
 {
-
   TopLeftX = X;
   TopLeftY = Y;
 
