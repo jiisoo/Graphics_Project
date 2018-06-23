@@ -12,18 +12,9 @@ const kmuvcl::math::vec3f Camera::center_position() const
 
 void Camera::mouse_click(float X, float Y)
 {
-<<<<<<< HEAD
   position_(0) += X;
   position_(1) += Y;
   std::cout << position_(0) << "  " << position_(1) << std::endl;
-=======
-  position_(0) = X;
-  position_(1) = Y;
-<<<<<<< HEAD
-  std::cout << position_(0) << "  " << position_(1) << std::endl;
-=======
->>>>>>> 57092384fd3cc2f9354fa65f51365fc2d05cef12
->>>>>>> 96e1e46c5c2575d4ee5ded1a9469937e83521185
 }
 //0. 2. 25
 // TODO: fill up the following functions properly

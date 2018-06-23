@@ -170,20 +170,12 @@ void setSmaller(int option)
 //   }
 // }
 void MyMouseClick(GLint Button, GLint State, GLint X, GLint Y)
-<<<<<<< HEAD
 { 
-=======
-<<<<<<< HEAD
-{
-=======
-{ 
-<<<<<<< HEAD
->>>>>>> 96e1e46c5c2575d4ee5ded1a9469937e83521185
+
   TopLeftX = X;
   TopLeftY = Y;
   
   if(Button == GLUT_LEFT_BUTTON)
-<<<<<<< HEAD
   {
     float x = TopLeftX/900.0;
     float y = (900-TopLeftY)/900.0;
@@ -204,22 +196,8 @@ void MyMouseClick(GLint Button, GLint State, GLint X, GLint Y)
     {
       g_camera.mouse_click(0.0f, 1.0f);
     }
-=======
-  {
-     g_camera.mouse_click(TopLeftX/300.0, (900-TopLeftY)/300.0);
-=======
->>>>>>> 7782ba70e229b4d5cc68d64949b50affc36f3414
-  int x = X;
-  int y = Y;
-
-  if(Button == GLUT_LEFT_BUTTON)
-  {
-     g_camera.mouse_click(x, y);
->>>>>>> 57092384fd3cc2f9354fa65f51365fc2d05cef12
->>>>>>> 96e1e46c5c2575d4ee5ded1a9469937e83521185
   }
-    glutPostRedisplay();
-     //g_camera.mouse_click(TopLeftX/900.0, (900-TopLeftY)/900.0);
+     //g_camera.mouse_click(TopLeftX/300.0, (900-TopLeftY)/300.0);
 }
 
 
