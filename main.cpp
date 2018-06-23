@@ -11,6 +11,7 @@
 #include "Object.h"
 #include "Camera.h"
 #include "Shader.h"
+#include "Camera.h"
 
 #include "transform.hpp"
 
@@ -53,6 +54,7 @@ GLint  loc_u_material_diffuse;
 GLint  loc_u_material_specular;
 GLint  loc_u_material_shininess;
 
+static GLfloat TopLeftX, TopLeftY, BottomRightX, BottomRightY;
 kmuvcl::math::mat4x4f   mat_PVM;
 
 kmuvcl::math::vec4f light_vector      = kmuvcl::math::vec4f(10.0f,10.0f, 10.0f);
@@ -155,18 +157,30 @@ void setSmaller(int option)
     glutPostRedisplay();
 }
 
-void MyKeyboard(unsigned char keypressed, int X, int Y)
-{
-  switch(keypressed)
+// void MyKeyboard(unsigned char keypressed, int X, int Y)
+// {
+//   switch(keypressed)
+//   {
+//     case 'Q' :
+//       exit(0);  break;
+//     case 'q' :
+//       exit(0);  break;
+//     case 27 :
+//      exit(0);  break;
+//   }
+// }
+void MyMouseClick(GLint Button, GLint State, GLint X, GLint Y)
+{ 
+  TopLeftX = X;
+  TopLeftY = Y;
+  
+  if(Button == GLUT_LEFT_BUTTON)
   {
-    case 'Q' :
-      exit(0);  break;
-    case 'q' :
-      exit(0);  break;
-    case 27 :
-     exit(0);  break;
+     g_camera.mouse_click(TopLeftX/300.0, (900-TopLeftY)/300.0);
   }
 }
+
+
 
 int main(int argc, char* argv[])
 {
@@ -183,7 +197,7 @@ int main(int argc, char* argv[])
 
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-  glutInitWindowPosition(100, 100);
+  glutInitWindowPosition(0, 0);
   glutInitWindowSize(900, 900);
   glutCreateWindow("Modeling & Navigating Your Studio");
 
@@ -202,8 +216,8 @@ int main(int argc, char* argv[])
   }
 
   init();
-  glutKeyboardFunc(MyKeyboard);
-
+  //glutKeyboardFunc(MyKeyboard);
+  glutMouseFunc(MyMouseClick);
   glutMainLoop();
 
   return 0;
@@ -259,6 +273,7 @@ void init()
 
 void display()
 {
+  glViewport(0, 0, 900, 900);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   glUseProgram(program);
@@ -729,6 +744,10 @@ void keyboard(unsigned char key, int x, int y)
   else if(key=='w' || key=='W')
   {
     g_camera.rotate_up(10.0f);
+  }
+  else if(key == 27 || key == 'Q' || key == 'q')
+  {
+    exit(0);
   }
 	glutPostRedisplay();
 }
