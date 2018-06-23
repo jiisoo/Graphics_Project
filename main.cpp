@@ -170,10 +170,10 @@ void setSmaller(int option)
 //   }
 // }
 void MyMouseClick(GLint Button, GLint State, GLint X, GLint Y)
-{ 
+{
   int x = X;
   int y = Y;
-  
+
   if(Button == GLUT_LEFT_BUTTON)
   {
      g_camera.mouse_click(x, y);
@@ -234,7 +234,7 @@ void init()
   g_grass.load_simple_obj("./object/grass/Grass_02.obj");
   g_gate.load_simple_obj("./object/gate.obj");
   g_rock.load_simple_obj("./object/Rock/Rock.obj");
-//  g_wall.load_simple_obj("./object/Wall/grade.obj");
+//  g_wall.load_simple_obj("./object/wall/walls.obj");
   g_stry.load_simple_obj("./object/Styracosarus/stry.obj");
   g_dryo.load_simple_obj("./object/Dryosarus/dryo.obj");
   g_albert.load_simple_obj("./object/Albertosaurus/albert.obj");
