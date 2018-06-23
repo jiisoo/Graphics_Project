@@ -171,10 +171,9 @@ void MyMouseClick(GLint Button, GLint State, GLint X, GLint Y)
 }
 
 
-
 int main(int argc, char* argv[])
 {
-  /*
+
   if (argc > 1)
   {
     g_filename = argv[2];
@@ -183,7 +182,7 @@ int main(int argc, char* argv[])
   {
     g_filename = "./data/cube.obj";
   }
-  */
+
 
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
