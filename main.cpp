@@ -59,21 +59,21 @@ GLint  loc_u_material_specular;
 GLint  loc_u_material_shininess;
 
 int trike = 0, camera = 0, dilo = 0, allo = 0, bird = 0, grass = 0, gate = 0, rock = 0, wall = 0, stry = 0, dryo = 0, albert = 0, carcar = 0, steg = 0, tree = 0;
-float trike_tx, trike_ty, trike_tz;
-float camera_tx, camera_ty, camera_tz;
-float dilo_tx, dilo_ty, dilo_tz;
-float allo_tx, allo_ty, allo_tz;
-float bird_tx, bird_ty, bird_tz;
-float grass_tx, grass_ty, grass_tz;
-float gate_tx, gate_ty, gate_tz;
-float rock_tx, rock_ty, rock_tz;
-float wall_tx, wall_ty, wall_tz;
-float stry_tx, stry_ty, stry_tz;
-float dryo_tx, dryo_ty, dryo_tz;
-float albert_tx, albert_ty, albert_tz;
-float carcar_tx, carcar_ty, carcar_tz;
-float steg_tx, steg_ty, steg_tz;
-float tree_tx, tree_ty, tree_tz;
+float trike_tx, trike_ty, trike_tz, trike_sx, trike_sy, trike_sz;
+float camera_tx, camera_ty, camera_tz, camera_sx, camera_sy, camera_sz;
+float dilo_tx, dilo_ty, dilo_tz, dilo_sx, dilo_sy, dilo_sz;
+float allo_tx, allo_ty, allo_tz, allo_sx, allo_sy, allo_sz;;
+float bird_tx, bird_ty, bird_tz, bird_sx, bird_sy, bird_sz;
+float grass_tx, grass_ty, grass_tz, grass_sx, grass_sy, grass_sz;
+float gate_tx, gate_ty, gate_tz, gate_sx, gate_sy, gate_sz;
+float rock_tx, rock_ty, rock_tz, rock_sx, rock_sy, rock_sz;
+float wall_tx, wall_ty, wall_tz, wall_sx, wall_sy, wall_sz;
+float stry_tx, stry_ty, stry_tz, stry_sx, stry_sy, stry_sz;
+float dryo_tx, dryo_ty, dryo_tz, dryo_sx, dryo_sy, dryo_sz;
+float albert_tx, albert_ty, albert_tz, albert_sx, albert_sy, albert_sz;
+float carcar_tx, carcar_ty, carcar_tz, arcar_sx, carcar_sy, carcar_sz;
+float steg_tx, steg_ty, steg_tz,  steg_sx, steg_sy, steg_sz;
+float tree_tx, tree_ty, tree_tz, tree_sx, tree_sy, tree_sz;
 
 static GLfloat TopLeftX, TopLeftY, BottomRightX, BottomRightY;
 kmuvcl::math::mat4x4f   mat_PVM;
@@ -888,9 +888,10 @@ if(wall == 1){
 
 //Grass_02
   if(grass == 1){
+    float tx=-8.0f;
     for(int i=0; i<5; i++){
       S = kmuvcl::math::scale(5.0f, 1.0f, 10.0f);
-      T = kmuvcl::math::translate(-8.0f, 0.0f, -20.0f);
+      T = kmuvcl::math::translate(tx, 0.0f, -20.0f);
       mat_Model = T * S;
       mat_PVM = mat_Proj*mat_View*mat_Model;
 
@@ -916,7 +917,7 @@ if(wall == 1){
       g_grass.draw(loc_a_vertex, loc_a_normal,
         loc_u_material_ambient, loc_u_material_diffuse,
         loc_u_material_specular, loc_u_material_shininess);
-      //tx+= 3.0f;
+      tx+= 3.0f;
     }
   }
 
